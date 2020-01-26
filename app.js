@@ -1,9 +1,6 @@
 var express = require("express");
 var app = express();
 
-app.get("*", function(req, res){
-  res.send("Error 404: Page not found");
-});
 // "/" => "Hi there"
 app.get("/", function(req, res){
   res.send("Hi there");
@@ -27,7 +24,7 @@ app.get("/speak/:animal/", function(req, res){
   if(sounds.hasOwnProperty(animal)){
     res.send("The " + animal + " says " + sounds[animal]);
   } else {
-    res.send("We haven't herad of that animal");
+    res.send("We haven't heard of that animal");
   }
 });
 app.get("/repeat/:word/:num", function(req, res){
@@ -39,7 +36,6 @@ app.get("/repeat/:word/:num", function(req, res){
 app.get("*", function(req, res){
   res.send("Error 404: Page not found");
 });
-
 
 // Tell express to listen for request
 app.listen(3000, function(){
