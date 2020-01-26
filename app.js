@@ -1,15 +1,20 @@
 var express = require("express");
 var app = express();
 
+app.get("*", function(req, res){
+  res.send("Error 404: Page not found");
+});
 // "/" => "Hi there"
 app.get("/", function(req, res){
   res.send("Hi there");
 });
+
 // "/bye" => "Goodbye"
 app.get("/bye", function(req, res){
   res.send("Goodbye");
 });
-// "/dog" => "Meow!"
+
+// dinamic ruting
 app.get("/speak/:animal/", function(req, res){
   var sounds = {
     dog: "woof",
@@ -34,6 +39,7 @@ app.get("/repeat/:word/:num", function(req, res){
 app.get("*", function(req, res){
   res.send("Error 404: Page not found");
 });
+
 
 // Tell express to listen for request
 app.listen(3000, function(){
