@@ -44,9 +44,17 @@ app.get("/", function(req, res){
 
 app.get("/fallinlovewith/:thing", function(req, res){
   var thing = req.params.thing.toUpperCase();
-  res.render("love.ejs", {
-    thingVar: thing
-  });
+  res.render("love.ejs", {thingVar: thing});
+});
+
+app.get("/posts", function(req, res){
+  var posts = [
+    {title: "First Post", author: "John"},
+    {title: "Pomeranian-Husky the Pomsky", author: "Colt"},
+    {title: "RIP Kobe", author: "Jordan"},
+    {title: "Last but not Least", author: "Alex"}
+  ];
+  res.render("posts.ejs", {posts: posts});
 });
 
 app.get("*", function(req, res){
