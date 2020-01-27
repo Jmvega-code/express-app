@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
-
-
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 /** 
  * **********
  * Exercises:
@@ -39,12 +39,12 @@ app.get("/repeat/:word/:num", function(req, res){
 });
 */
 app.get("/", function(req, res){
-  res.render("home.ejs");
+  res.render("home");
 });
 
 app.get("/fallinlovewith/:thing", function(req, res){
   var thing = req.params.thing.toUpperCase();
-  res.render("love.ejs", {thingVar: thing});
+  res.render("love", {thingVar: thing});
 });
 
 app.get("/posts", function(req, res){
@@ -54,7 +54,7 @@ app.get("/posts", function(req, res){
     {title: "RIP Kobe", author: "Jordan"},
     {title: "Last but not Least", author: "Alex"}
   ];
-  res.render("posts.ejs", {posts: posts});
+  res.render("posts", {posts: posts});
 });
 
 app.get("*", function(req, res){
