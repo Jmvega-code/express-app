@@ -1,5 +1,9 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 /** 
@@ -38,6 +42,8 @@ app.get("/repeat/:word/:num", function(req, res){
   res.send(word.repeat(num));
 });
 */
+var friends = ["Tony", "Javi", "Leti", "Mora", "Alex"]
+
 app.get("/", function(req, res){
   res.render("home");
 });
@@ -45,6 +51,17 @@ app.get("/", function(req, res){
 app.get("/fallinlovewith/:thing", function(req, res){
   var thing = req.params.thing.toUpperCase();
   res.render("love", {thingVar: thing});
+});
+app.get("/friends", function(req, res){
+  
+  res.render("friends", {friends:friends})
+});
+
+app.post("/addfriend", function(req, res){
+  console.log(req.body.newfriend);
+  var newFriend = req.body.newfriend;
+  friends.push(newFriend);
+  res.redirect("/friends");
 });
 
 app.get("/posts", function(req, res){
