@@ -1,12 +1,17 @@
 <%- include('partials/header')%>
 <h1>This is the weather forecast page</h1>
+<form action='/weather' method='GET'>
+  <input type='text' name='city' placeholder='City'>
+  <input type='text' name='country' placeholder='Country'>
+<button type='submit'>Get Weather!</button>
+</form>
 <ul>
-<li>City Name - <%=namecity%>, <%=namecountry%></li>
-<li>Minimum Temperature - <%= mintemperature %>ºC</li>
-<li>Maximum Temperature -<%= maxtemperature %>ºC</li>
-<li>Humidity - <%= humidity %>%</li>
-<li>Sunrise - <%= sunrise %></li>
-<li>Sunset - <%= sunset %></li>
-<li>Weather - <%= description %></li>
+<li>City Name: <%=namecity%>, <%=namecountry%></li>
+<li>Minimum Temperature: <%= mintemperature %>ºC</li>
+<li>Maximum Temperature: <%= maxtemperature %>ºC</li>
+<li>Humidity: <%= humidity %>%</li>
+<li>Sunrise: <%= sunrise %></li>
+<li>Sunset: <%= sunset %></li>
+<li>Weather: <%= description %></li>
 </ul>
 <%- include('partials/footer')%>
