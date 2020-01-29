@@ -1,5 +1,35 @@
 body {
-  font-family: roboto;
-  color: steelblue;
-  background-color: wheat;
+  font-family: Helvetica;
+  color: #ffffff;
+  background-color: #232323;
+}
+h1 {
+  text-align: center;
+}
+.place, .temp{
+  text-align: center;
+  font-size: 30px;
+  margin: 5px auto;
+  color: #ffffff;
+  font-family: Helvetica;
+  font-weight: 500;
+}
+.temp {
+  font-size: 60px;
+  font-weight: 200;
+}
+.description {
+  margin: 5px auto;
+  text-align: center;
+}
+
+div, div p {
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+}
+
+ul {
+  margin: 0 auto;
+  list-style-type: none;
 }

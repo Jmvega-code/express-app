@@ -75,30 +75,35 @@ app.get('/weather', function(req, res){
         let seconds = '0' + date.getSeconds();
       
         // Will display time in 10:30:23 format
-        let formatedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+        let formatedTime = hours + ':' + minutes.substr(-2);
         return formatedTime;
       }
       let namecity = data.name;
       let namecountry = data.sys.country;
       let description = data.weather[0].description;
       let mintemperature = data.main.temp_min;
+      let temperature = data.main.temp;
       let maxtemperature = data.main.temp_max;
       let humidity = data.main.humidity;
+      let timeshift = (data.timezone - 3600);
+      let sunrise = (data.sys.sunrise + timeshift);
+      let sunset = (data.sys.sunset + timeshift);
+      let formatedSunrise = formatedDate(sunrise);
+      let formatedSunset = formatedDate(sunset);
 
-      let sunrise = formatedDate(data.sys.sunrise);
-      let sunset = formatedDate(data.sys.sunset);
   
       res.render('weather', {
         data,
         namecity,
         namecountry,
         description,
+        temperature,
         mintemperature,
         maxtemperature,
         humidity,
-        sunrise, 
-        sunset
-
+        formatedSunrise, 
+        formatedSunset,
+        timeshift,
       });
     }
   });
