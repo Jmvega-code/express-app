@@ -52,18 +52,18 @@ app.get('/', function(req, res){
 
 
 
-app.get('/fallinlovewith/:thing', function(req, res){
+app.get('/fallinlovewith/:thing', (req, res) => {
   let thing = req.params.thing.toUpperCase();
   res.render('love', {thinglet: thing});
 });
 
 
-app.get('/weather', function(req, res){
+app.get('/weather', (req, res) => {
   let city = req.query.city;
   let country = req.query.country;
-  let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=3c0c4a8eaf38e51575c29511fb12fc13&units=metric'
-  request(url, function (error, response, body){
-    if(!error && response.statusCode == 200){
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=3c0c4a8eaf38e51575c29511fb12fc13&units=metric`;
+  request(url, (error, response, body) => {
+    if(!error && response.statusCode === 200){
       let data = JSON.parse(body);
       function formatedDate(unix_timestamp){
         let date = new Date(unix_timestamp * 1000);
@@ -109,13 +109,13 @@ app.get('/weather', function(req, res){
   });
 });
 
-app.get('/search', function(req, res){
+app.get('/search', (req, res) => {
   let city = req.body.city;
   let country = req.body.country;
   res.render('search')
 });
 
-app.get('/posts', function(req, res){
+app.get('/posts', (req, res) => {
   let posts = [
     {title: 'First Post', author: 'John'},
     {title: 'Pomeranian-Husky the Pomsky', author: 'Colt'},
@@ -125,11 +125,11 @@ app.get('/posts', function(req, res){
   res.render('posts', {posts: posts});
 });
 
-app.get('*', function(req, res){
+app.get('*', (req, res) => {
   res.send('Error 404: Page not found');
 });
 
 // Tell express to listen for request
-app.listen(3000, function(){
+app.listen(3000, () => {
   console.log('Serving on port 3000')
 });
